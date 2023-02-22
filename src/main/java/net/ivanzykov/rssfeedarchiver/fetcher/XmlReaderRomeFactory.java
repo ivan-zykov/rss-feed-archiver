@@ -1,14 +1,13 @@
 package net.ivanzykov.rssfeedarchiver.fetcher;
 
 import com.rometools.rome.io.XmlReader;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+@Component
 public class XmlReaderRomeFactory {
-
-    private XmlReaderRomeFactory() {
-    }
 
     /**
      * Creates a new instance of {@link XmlReader} with provided input stream

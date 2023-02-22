@@ -17,9 +17,4 @@ public class FetcherConfig {
     public SyndFeedInput syndFeedInput() {
         return new SyndFeedInput();
     }
-
-    @Bean
-    public XmlReaderRomeFactory xmlReaderRomeFactory() {
-        return new XmlReaderRomeFactory();
-    }
 }
