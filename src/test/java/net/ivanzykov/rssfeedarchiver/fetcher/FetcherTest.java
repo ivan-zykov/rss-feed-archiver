@@ -1,6 +1,5 @@
 package net.ivanzykov.rssfeedarchiver.fetcher;
 
-import com.rometools.rome.io.SyndFeedInput;
 import net.ivanzykov.rssfeedarchiver.feed.Feed;
 import net.ivanzykov.rssfeedarchiver.feed.FetcherException;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +28,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = {Fetcher.class, RestTemplate.class, SyndFeedInput.class, XmlReaderRomeFactory.class})
+@SpringBootTest
 class FetcherTest {
 
     @Autowired
