@@ -18,6 +18,13 @@ public class Fetcher implements Consumer {
     private final SyndFeedInput syndFeedInput;
     private final XmlReaderRomeFactory xmlReaderFactory;
 
+    /**
+     * Constructor of this class.
+     *
+     * @param restTemplate      restTemplate object requesting the feed over HTTP
+     * @param syndFeedInput     syndFeedInput object parsing the XML from the response
+     * @param xmlReaderFactory  xmlReaderFactory object creating objects of XML parser
+     */
     public Fetcher(RestTemplate restTemplate, SyndFeedInput syndFeedInput, XmlReaderRomeFactory xmlReaderFactory) {
         this.restTemplate = restTemplate;
         this.syndFeedInput = syndFeedInput;
