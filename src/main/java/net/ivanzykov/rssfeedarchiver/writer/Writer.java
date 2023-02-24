@@ -5,7 +5,6 @@ import net.ivanzykov.rssfeedarchiver.feed.Consumer;
 import net.ivanzykov.rssfeedarchiver.feed.Feed;
 import net.ivanzykov.rssfeedarchiver.repository.EntryRepository;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
@@ -14,15 +13,16 @@ import org.springframework.stereotype.Service;
 public class Writer implements Consumer {
 
     private final EntryRepository entryRepository;
-    private final Logger logger = LoggerFactory.getLogger(Writer.class);
+    private final Logger logger;
 
     /**
      * Constructor of this class.
      *
      * @param entryRepository entryRepository object of JPA repository for the {@link Entry} entity
      */
-    public Writer(EntryRepository entryRepository) {
+    public Writer(EntryRepository entryRepository, Logger logger) {
         this.entryRepository = entryRepository;
+        this.logger = logger;
     }
 
     /**
