@@ -12,6 +12,8 @@ import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,7 +40,7 @@ class WriterTest {
         entryOk.setPubDate(ZonedDateTime.now().toOffsetDateTime());
         var entryBad = new Entry();
 
-        var feed = new Feed(List.of("/testUrl"));
+        var feed = new Feed(List.of("/testUrl"), new ArrayList<>(), new HashSet<>());
         feed.addEntry(entryBad);
         feed.addEntry(entryOk);
 

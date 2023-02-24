@@ -17,6 +17,8 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,7 +47,7 @@ class FetcherTest {
     void consume_fetchTwoFeeds_bothFeedsAreSet() throws URISyntaxException, IOException {
         String url1 = "/testUrl1";
         String url2 = "/testUrl2";
-        var feed = new Feed(List.of(url1, url2));
+        var feed = new Feed(List.of(url1, url2), new ArrayList<>(), new HashSet<>());
 
         assertTrue(feed.getFetchedFeeds().isEmpty());
 
@@ -71,7 +73,7 @@ class FetcherTest {
     @Test
     void consume_XMLCouldNotBeParsed_exceptionIsHandled() throws URISyntaxException, IOException {
         String url1 = "/testUrl1";
-        var feed = new Feed(List.of(url1));
+        var feed = new Feed(List.of(url1), new ArrayList<>(), new HashSet<>());
 
         mockServer.expect(ExpectedCount.once(), requestTo(url1))
                 .andExpect(method(HttpMethod.GET))

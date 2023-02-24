@@ -4,13 +4,11 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
- * Holds URLs of RSS feeds and other data needed to consume the feeds, and calls other components of this app.
+ * Holds data needed to consume RSS feeds, and calls other components of this app.
  */
 @Service
 public class Feed {
@@ -22,12 +20,14 @@ public class Feed {
     /**
      * Constructor of this class.
      *
-     * @param feedUrls  list of strings with URLs of RSS feeds to consume
+     * @param feedUrls      list of strings with URLs of RSS feeds to consume
+     * @param fetchedFeeds  list of {@link SyndFeed} objects to store parsed XML entries
+     * @param entries       list of {@link Entry} objects to store mapped entries
      */
-    public Feed(List<String> feedUrls) {
+    public Feed(List<String> feedUrls, List<SyndFeed> fetchedFeeds, Set<Entry> entries) {
         this.feedUrls = feedUrls;
-        fetchedFeeds = new ArrayList<>();
-        entries = new HashSet<>();
+        this.fetchedFeeds = fetchedFeeds;
+        this.entries = entries;
     }
 
     public List<String> getFeedUrls() {

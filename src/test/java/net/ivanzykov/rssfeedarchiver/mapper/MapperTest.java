@@ -11,9 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,7 +24,7 @@ class MapperTest {
     @Test
     void consume() {
         String url1 = "/testUrl1";
-        var feed = new Feed(List.of(url1));
+        var feed = new Feed(List.of(url1), new ArrayList<>(), new HashSet<>());
 
         var sEntry = new SyndEntryImpl();
         String guid = "testUri";
