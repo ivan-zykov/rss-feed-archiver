@@ -6,11 +6,8 @@ import com.rometools.rome.feed.synd.SyndFeedImpl;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
 import net.ivanzykov.rssfeedarchiver.feed.Feed;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -20,8 +17,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = {Mapper.class, ModelMapper.class})
+@SpringBootTest()
 class MapperTest {
 
     @Autowired
