@@ -44,6 +44,8 @@ class WriterTest {
         feed.addEntry(entryBad);
         feed.addEntry(entryOk);
 
+        assertTrue(entryRepository.findAll().isEmpty());
+
         writer.consume(feed);
 
         List<Entry> allSaved = entryRepository.findAll();
@@ -57,5 +59,8 @@ class WriterTest {
                 () -> assertEquals(entryOk.getTitle(), allSaved.get(0).getTitle()),
                 () -> assertTrue(output.getOut().contains("Entry with guid: null is missing at least one required property."))
         );
+
+        // Clean up
+        entryRepository.deleteAll();
     }
 }
