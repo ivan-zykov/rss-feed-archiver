@@ -2,9 +2,9 @@ package net.ivanzykov.rssfeedarchiver.feed;
 
 import com.rometools.rome.feed.synd.SyndFeed;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
-import net.ivanzykov.rssfeedarchiver.fetcher.Fetcher;
-import net.ivanzykov.rssfeedarchiver.mapper.Mapper;
-import net.ivanzykov.rssfeedarchiver.writer.Writer;
+import net.ivanzykov.rssfeedarchiver.fetcher.FetcherService;
+import net.ivanzykov.rssfeedarchiver.mapper.MapperService;
+import net.ivanzykov.rssfeedarchiver.writer.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @Configuration
-public class FeedConfig {
+public class FeedServiceConfig {
 
     @Bean
     public List<String> feedUrls() {
@@ -34,9 +34,9 @@ public class FeedConfig {
 
     @Bean
     public List<Consumer> consumers(
-            @Autowired Fetcher fetcher,
-            @Autowired Mapper mapper,
-            @Autowired Writer writer) {
-        return List.of(fetcher, mapper, writer);
+            @Autowired FetcherService fetcherService,
+            @Autowired MapperService mapperService,
+            @Autowired WriterService writerService) {
+        return List.of(fetcherService, mapperService, writerService);
     }
 }

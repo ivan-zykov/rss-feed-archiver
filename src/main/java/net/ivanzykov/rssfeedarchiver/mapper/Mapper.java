@@ -3,9 +3,10 @@ package net.ivanzykov.rssfeedarchiver.mapper;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndEntryImpl;
 import com.rometools.rome.feed.synd.SyndFeed;
+import net.ivanzykov.rssfeedarchiver.controller.FeedService;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
 import net.ivanzykov.rssfeedarchiver.feed.Consumer;
-import net.ivanzykov.rssfeedarchiver.feed.Feed;
+import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -30,12 +31,12 @@ public class Mapper implements Consumer {
     }
 
     /**
-     * Maps XML entries from the supplied {@link Feed} object to entities of and saves them in the same object.
+     * Maps XML entries from the supplied {@link FeedServiceImpl} object to entities of and saves them in the same object.
      *
      * @param feed  feed object holding fetched items. Result is also saved there
      */
     @Override
-    public void consume(Feed feed) {
+    public void consume(FeedService feed) {
         for (SyndFeed syndFeed : feed.getFetchedFeeds()) {
             for (SyndEntry syndEntry : syndFeed.getEntries()) {
                 Entry entry = mapToEntity(syndEntry);

@@ -1,6 +1,7 @@
 package net.ivanzykov.rssfeedarchiver.feed;
 
 import com.rometools.rome.feed.synd.SyndFeed;
+import net.ivanzykov.rssfeedarchiver.controller.FeedService;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  * Holds data needed to consume RSS feeds, and calls other components of this app.
  */
 @Service
-public class Feed {
+public class FeedServiceImpl implements FeedService {
 
     private final List<String> feedUrls;
     private final List<SyndFeed> fetchedFeeds;
@@ -26,7 +27,7 @@ public class Feed {
      * @param entries       list of {@link Entry} objects to store mapped entries
      * @param consumers     list of {@link Consumer} objects that do their part of the job to consume this feed
      */
-    public Feed(List<String> feedUrls, List<SyndFeed> fetchedFeeds, Set<Entry> entries, List<Consumer> consumers) {
+    public FeedServiceImpl(List<String> feedUrls, List<SyndFeed> fetchedFeeds, Set<Entry> entries, List<Consumer> consumers) {
         this.feedUrls = feedUrls;
         this.fetchedFeeds = fetchedFeeds;
         this.entries = entries;
@@ -36,32 +37,40 @@ public class Feed {
     /**
      * Calls components of this app.
      */
-    public void consumeSelf() {
+    @Override
+    public void consumeUrls(List<String> feedUrls) {
+        addAllFeedUrls(feedUrls);
         for (Consumer c : consumers) {
             c.consume(this);
         }
     }
 
+    @Override
     public List<String> getFeedUrls() {
         return feedUrls;
     }
 
+    @Override
     public void addAllFeedUrls(List<String> reedUrls) {
         feedUrls.addAll(reedUrls);
     }
 
+    @Override
     public void addFetchedFeed(SyndFeed feed) {
         fetchedFeeds.add(feed);
     }
 
+    @Override
     public List<SyndFeed> getFetchedFeeds() {
         return fetchedFeeds;
     }
 
+    @Override
     public Set<Entry> getEntries() {
         return entries;
     }
 
+    @Override
     public void addEntry(Entry entry) {
         this.entries.add(entry);
     }

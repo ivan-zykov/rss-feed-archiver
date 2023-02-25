@@ -1,6 +1,6 @@
 package net.ivanzykov.rssfeedarchiver.fetcher;
 
-import net.ivanzykov.rssfeedarchiver.feed.Feed;
+import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
 import net.ivanzykov.rssfeedarchiver.feed.FetcherException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,7 +47,7 @@ class FetcherTest {
     void consume_fetchTwoFeeds_bothFeedsAreSet() throws URISyntaxException, IOException {
         String url1 = "/testUrl1";
         String url2 = "/testUrl2";
-        var feed = new Feed(List.of(url1, url2), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
+        var feed = new FeedServiceImpl(List.of(url1, url2), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
 
         assertTrue(feed.getFetchedFeeds().isEmpty());
 
@@ -73,7 +73,7 @@ class FetcherTest {
     @Test
     void consume_XMLCouldNotBeParsed_exceptionIsHandled() throws URISyntaxException, IOException {
         String url1 = "/testUrl1";
-        var feed = new Feed(List.of(url1), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
+        var feed = new FeedServiceImpl(List.of(url1), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
 
         mockServer.expect(ExpectedCount.once(), requestTo(url1))
                 .andExpect(method(HttpMethod.GET))

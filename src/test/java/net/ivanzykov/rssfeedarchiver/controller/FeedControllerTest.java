@@ -2,7 +2,7 @@ package net.ivanzykov.rssfeedarchiver.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ivanzykov.rssfeedarchiver.feed.Feed;
+import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -30,7 +30,7 @@ class FeedControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private Feed feed;
+    private FeedServiceImpl feed;
 
     private static String asJsonString(Object obj) {
         try {
@@ -49,7 +49,7 @@ class FeedControllerTest {
                     .content(asJsonString(feedUrls)))
                 .andExpect(status().isCreated());
 
-        verify(feed, times(1)).consumeSelf();
+        verify(feed, times(1)).consumeUrls(feedUrls);
     }
 
     @Test

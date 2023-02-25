@@ -1,5 +1,7 @@
 package net.ivanzykov.rssfeedarchiver.feed;
 
+import net.ivanzykov.rssfeedarchiver.controller.FeedService;
+
 public interface Consumer {
 
     /**
@@ -7,5 +9,5 @@ public interface Consumer {
      *
      * @param feed feed object with data needed for this method. Result is also saved there
      */
-    void consume(Feed feed);
+    void consume(FeedService feed);
 }

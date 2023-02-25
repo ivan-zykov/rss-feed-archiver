@@ -4,7 +4,7 @@ import com.rometools.rome.feed.synd.SyndContentImpl;
 import com.rometools.rome.feed.synd.SyndEntryImpl;
 import com.rometools.rome.feed.synd.SyndFeedImpl;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
-import net.ivanzykov.rssfeedarchiver.feed.Feed;
+import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +24,7 @@ class MapperTest {
     @Test
     void consume() {
         String url1 = "/testUrl1";
-        var feed = new Feed(List.of(url1), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
+        var feed = new FeedServiceImpl(List.of(url1), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
 
         var sEntry = new SyndEntryImpl();
         String guid = "testUri";

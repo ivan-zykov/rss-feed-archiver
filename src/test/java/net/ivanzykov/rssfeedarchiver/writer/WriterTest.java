@@ -1,7 +1,7 @@
 package net.ivanzykov.rssfeedarchiver.writer;
 
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
-import net.ivanzykov.rssfeedarchiver.feed.Feed;
+import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
 import net.ivanzykov.rssfeedarchiver.repository.EntryRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,7 +40,7 @@ class WriterTest {
         entryOk.setPubDate(ZonedDateTime.now().toOffsetDateTime());
         var entryBad = new Entry();
 
-        var feed = new Feed(List.of("/testUrl"), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
+        var feed = new FeedServiceImpl(List.of("/testUrl"), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
         feed.addEntry(entryBad);
         feed.addEntry(entryOk);
 
