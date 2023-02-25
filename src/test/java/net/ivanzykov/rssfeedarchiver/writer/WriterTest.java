@@ -40,7 +40,7 @@ class WriterTest {
         entryOk.setPubDate(ZonedDateTime.now().toOffsetDateTime());
         var entryBad = new Entry();
 
-        var feed = new Feed(List.of("/testUrl"), new ArrayList<>(), new HashSet<>());
+        var feed = new Feed(List.of("/testUrl"), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
         feed.addEntry(entryBad);
         feed.addEntry(entryOk);
 

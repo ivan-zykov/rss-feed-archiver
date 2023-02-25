@@ -16,6 +16,7 @@ public class Feed {
     private final List<String> feedUrls;
     private final List<SyndFeed> fetchedFeeds;
     private final Set<Entry> entries;
+    private final List<Consumer> consumers;
 
     /**
      * Constructor of this class.
@@ -23,15 +24,30 @@ public class Feed {
      * @param feedUrls      list of strings with URLs of RSS feeds to consume
      * @param fetchedFeeds  list of {@link SyndFeed} objects to store parsed XML entries
      * @param entries       list of {@link Entry} objects to store mapped entries
+     * @param consumers     list of {@link Consumer} objects that do their part of the job to consume this feed
      */
-    public Feed(List<String> feedUrls, List<SyndFeed> fetchedFeeds, Set<Entry> entries) {
+    public Feed(List<String> feedUrls, List<SyndFeed> fetchedFeeds, Set<Entry> entries, List<Consumer> consumers) {
         this.feedUrls = feedUrls;
         this.fetchedFeeds = fetchedFeeds;
         this.entries = entries;
+        this.consumers = consumers;
+    }
+
+    /**
+     * Calls components of this app.
+     */
+    public void consumeSelf() {
+        for (Consumer c : consumers) {
+            c.consume(this);
+        }
     }
 
     public List<String> getFeedUrls() {
         return feedUrls;
+    }
+
+    public void addAllFeedUrls(List<String> reedUrls) {
+        feedUrls.addAll(reedUrls);
     }
 
     public void addFetchedFeed(SyndFeed feed) {

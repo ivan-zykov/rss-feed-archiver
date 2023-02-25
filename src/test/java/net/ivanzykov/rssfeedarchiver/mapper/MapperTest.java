@@ -24,7 +24,7 @@ class MapperTest {
     @Test
     void consume() {
         String url1 = "/testUrl1";
-        var feed = new Feed(List.of(url1), new ArrayList<>(), new HashSet<>());
+        var feed = new Feed(List.of(url1), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
 
         var sEntry = new SyndEntryImpl();
         String guid = "testUri";

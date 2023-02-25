@@ -47,7 +47,7 @@ class FetcherTest {
     void consume_fetchTwoFeeds_bothFeedsAreSet() throws URISyntaxException, IOException {
         String url1 = "/testUrl1";
         String url2 = "/testUrl2";
-        var feed = new Feed(List.of(url1, url2), new ArrayList<>(), new HashSet<>());
+        var feed = new Feed(List.of(url1, url2), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
 
         assertTrue(feed.getFetchedFeeds().isEmpty());
 
@@ -73,7 +73,7 @@ class FetcherTest {
     @Test
     void consume_XMLCouldNotBeParsed_exceptionIsHandled() throws URISyntaxException, IOException {
         String url1 = "/testUrl1";
-        var feed = new Feed(List.of(url1), new ArrayList<>(), new HashSet<>());
+        var feed = new Feed(List.of(url1), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
 
         mockServer.expect(ExpectedCount.once(), requestTo(url1))
                 .andExpect(method(HttpMethod.GET))
