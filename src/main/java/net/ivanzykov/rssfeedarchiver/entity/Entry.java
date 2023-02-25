@@ -18,7 +18,7 @@ public class Entry {
     @Column(name = "id", nullable = false, length = 2083)
     private String guid;
 
-    @Column(name = "title", nullable = false, length = 100)
+    @Column(name = "title", nullable = false, length = 500)
     private String title;
 
     @Column(name = "description", nullable = false, length = 4000)
