@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class Fetcher implements Consumer {
+public class FetcherService implements Consumer {
 
     private final RestTemplate restTemplate;
     private final SyndFeedInput syndFeedInput;
@@ -25,7 +25,7 @@ public class Fetcher implements Consumer {
      * @param syndFeedInput     syndFeedInput object parsing the XML from the response
      * @param xmlReaderFactory  xmlReaderFactory object creating objects of XML parser
      */
-    public Fetcher(RestTemplate restTemplate, SyndFeedInput syndFeedInput, XmlReaderRomeFactory xmlReaderFactory) {
+    public FetcherService(RestTemplate restTemplate, SyndFeedInput syndFeedInput, XmlReaderRomeFactory xmlReaderFactory) {
         this.restTemplate = restTemplate;
         this.syndFeedInput = syndFeedInput;
         this.xmlReaderFactory = xmlReaderFactory;

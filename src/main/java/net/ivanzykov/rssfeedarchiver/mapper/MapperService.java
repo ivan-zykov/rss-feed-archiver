@@ -17,7 +17,7 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Service
-public class Mapper implements Consumer {
+public class MapperService implements Consumer {
 
     private final ModelMapper modelMapper;
 
@@ -26,7 +26,7 @@ public class Mapper implements Consumer {
      *
      * @param objectMapper  objectMapper object mapping XML entries to entities
      */
-    public Mapper(ModelMapper objectMapper) {
+    public MapperService(ModelMapper objectMapper) {
         this.modelMapper = objectMapper;
     }
 

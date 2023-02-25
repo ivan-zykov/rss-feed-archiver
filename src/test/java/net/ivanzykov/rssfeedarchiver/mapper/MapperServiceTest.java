@@ -16,10 +16,10 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest()
-class MapperTest {
+class MapperServiceTest {
 
     @Autowired
-    private Mapper mapper;
+    private MapperService mapper;
 
     @Test
     void consume() {

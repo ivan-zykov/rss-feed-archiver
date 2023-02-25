@@ -10,7 +10,7 @@ import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Writer implements Consumer {
+public class WriterService implements Consumer {
 
     private final EntryRepository entryRepository;
     private final Logger logger;
@@ -20,7 +20,7 @@ public class Writer implements Consumer {
      *
      * @param entryRepository entryRepository object of JPA repository for the {@link Entry} entity
      */
-    public Writer(EntryRepository entryRepository, Logger logger) {
+    public WriterService(EntryRepository entryRepository, Logger logger) {
         this.entryRepository = entryRepository;
         this.logger = logger;
     }

@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class WriterConfig {
+public class WriterServiceConfig {
 
     @Bean
     public Logger logger() {
-        return LoggerFactory.getLogger(Writer.class);
+        return LoggerFactory.getLogger(WriterService.class);
     }
 }

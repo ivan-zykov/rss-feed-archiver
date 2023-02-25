@@ -28,10 +28,10 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 @SpringBootTest
-class FetcherTest {
+class FetcherServiceTest {
 
     @Autowired
-    private Fetcher fetcher;
+    private FetcherService fetcherService;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -59,7 +59,7 @@ class FetcherTest {
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(getXMLFixture("responseOk.xml"), MediaType.APPLICATION_XML));
 
-        fetcher.consume(feed);
+        fetcherService.consume(feed);
 
         mockServer.verify();
 
@@ -80,7 +80,7 @@ class FetcherTest {
                 .andRespond(withSuccess(getXMLFixture("responseBad.xml"), MediaType.APPLICATION_XML));
 
         Exception exception = assertThrows(FetcherException.class, () ->
-                fetcher.consume(feed));
+                fetcherService.consume(feed));
 
         mockServer.verify();
 

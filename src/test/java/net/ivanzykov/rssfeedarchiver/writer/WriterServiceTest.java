@@ -21,10 +21,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 @ExtendWith(OutputCaptureExtension.class)
-class WriterTest {
+class WriterServiceTest {
 
     @Autowired
-    private Writer writer;
+    private WriterService writerService;
 
     @Autowired
     private EntryRepository entryRepository;
@@ -46,7 +46,7 @@ class WriterTest {
 
         assertTrue(entryRepository.findAll().isEmpty());
 
-        writer.consume(feed);
+        writerService.consume(feed);
 
         List<Entry> allSaved = entryRepository.findAll();
 
