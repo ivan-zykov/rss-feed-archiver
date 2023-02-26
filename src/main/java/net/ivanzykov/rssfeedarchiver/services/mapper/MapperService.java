@@ -9,6 +9,7 @@ import net.ivanzykov.rssfeedarchiver.services.Consumer;
 import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -17,6 +18,7 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Service
+@Order(3)
 public class MapperService implements Consumer {
 
     private final ModelMapper modelMapper;

@@ -5,11 +5,13 @@ import net.ivanzykov.rssfeedarchiver.entity.Entry;
 import net.ivanzykov.rssfeedarchiver.repository.EntryRepository;
 import net.ivanzykov.rssfeedarchiver.services.Consumer;
 import org.slf4j.Logger;
+import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
 @Service
+@Order(4)
 public class WriterService implements Consumer {
 
     private final EntryRepository entryRepository;
