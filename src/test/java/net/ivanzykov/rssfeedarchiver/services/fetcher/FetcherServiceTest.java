@@ -1,7 +1,6 @@
-package net.ivanzykov.rssfeedarchiver.fetcher;
+package net.ivanzykov.rssfeedarchiver.services.fetcher;
 
-import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
-import net.ivanzykov.rssfeedarchiver.feed.FetcherException;
+import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

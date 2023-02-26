@@ -1,12 +1,11 @@
-package net.ivanzykov.rssfeedarchiver.fetcher;
+package net.ivanzykov.rssfeedarchiver.services.fetcher;
 
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import net.ivanzykov.rssfeedarchiver.controller.FeedService;
-import net.ivanzykov.rssfeedarchiver.feed.Consumer;
-import net.ivanzykov.rssfeedarchiver.feed.FetcherException;
+import net.ivanzykov.rssfeedarchiver.services.Consumer;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

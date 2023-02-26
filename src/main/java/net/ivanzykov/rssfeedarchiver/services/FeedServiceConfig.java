@@ -1,10 +1,10 @@
-package net.ivanzykov.rssfeedarchiver.feed;
+package net.ivanzykov.rssfeedarchiver.services;
 
 import com.rometools.rome.feed.synd.SyndFeed;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
-import net.ivanzykov.rssfeedarchiver.fetcher.FetcherService;
-import net.ivanzykov.rssfeedarchiver.mapper.MapperService;
-import net.ivanzykov.rssfeedarchiver.writer.WriterService;
+import net.ivanzykov.rssfeedarchiver.services.fetcher.FetcherService;
+import net.ivanzykov.rssfeedarchiver.services.mapper.MapperService;
+import net.ivanzykov.rssfeedarchiver.services.writer.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

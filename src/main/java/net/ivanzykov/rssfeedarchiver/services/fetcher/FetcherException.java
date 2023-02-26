@@ -1,4 +1,4 @@
-package net.ivanzykov.rssfeedarchiver.feed;
+package net.ivanzykov.rssfeedarchiver.services.fetcher;
 
 public class FetcherException extends RuntimeException {
 

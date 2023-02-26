@@ -2,7 +2,7 @@ package net.ivanzykov.rssfeedarchiver.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
+import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

@@ -1,4 +1,4 @@
-package net.ivanzykov.rssfeedarchiver.fetcher;
+package net.ivanzykov.rssfeedarchiver.services.fetcher;
 
 import com.rometools.rome.io.SyndFeedInput;
 import org.springframework.boot.web.client.RestTemplateBuilder;

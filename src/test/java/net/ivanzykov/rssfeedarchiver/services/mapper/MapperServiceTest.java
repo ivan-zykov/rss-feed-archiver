@@ -1,10 +1,10 @@
-package net.ivanzykov.rssfeedarchiver.mapper;
+package net.ivanzykov.rssfeedarchiver.services.mapper;
 
 import com.rometools.rome.feed.synd.SyndContentImpl;
 import com.rometools.rome.feed.synd.SyndEntryImpl;
 import com.rometools.rome.feed.synd.SyndFeedImpl;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
-import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
+import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

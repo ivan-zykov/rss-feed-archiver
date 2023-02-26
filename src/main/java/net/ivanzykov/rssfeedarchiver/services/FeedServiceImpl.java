@@ -1,4 +1,4 @@
-package net.ivanzykov.rssfeedarchiver.feed;
+package net.ivanzykov.rssfeedarchiver.services;
 
 import com.rometools.rome.feed.synd.SyndFeed;
 import net.ivanzykov.rssfeedarchiver.controller.FeedService;

@@ -1,4 +1,4 @@
-package net.ivanzykov.rssfeedarchiver.mapper;
+package net.ivanzykov.rssfeedarchiver.services.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

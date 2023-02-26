@@ -1,12 +1,12 @@
-package net.ivanzykov.rssfeedarchiver.mapper;
+package net.ivanzykov.rssfeedarchiver.services.mapper;
 
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndEntryImpl;
 import com.rometools.rome.feed.synd.SyndFeed;
 import net.ivanzykov.rssfeedarchiver.controller.FeedService;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
-import net.ivanzykov.rssfeedarchiver.feed.Consumer;
-import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
+import net.ivanzykov.rssfeedarchiver.services.Consumer;
+import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

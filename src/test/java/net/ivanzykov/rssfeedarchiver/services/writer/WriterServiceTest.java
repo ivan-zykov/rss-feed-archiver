@@ -1,8 +1,8 @@
-package net.ivanzykov.rssfeedarchiver.writer;
+package net.ivanzykov.rssfeedarchiver.services.writer;
 
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
-import net.ivanzykov.rssfeedarchiver.feed.FeedServiceImpl;
 import net.ivanzykov.rssfeedarchiver.repository.EntryRepository;
+import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
-package net.ivanzykov.rssfeedarchiver.writer;
+package net.ivanzykov.rssfeedarchiver.services.writer;
 
 import net.ivanzykov.rssfeedarchiver.controller.FeedService;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
-import net.ivanzykov.rssfeedarchiver.feed.Consumer;
 import net.ivanzykov.rssfeedarchiver.repository.EntryRepository;
+import net.ivanzykov.rssfeedarchiver.services.Consumer;
 import org.slf4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.jpa.JpaSystemException;
