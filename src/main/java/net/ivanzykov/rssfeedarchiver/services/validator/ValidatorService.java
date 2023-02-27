@@ -30,6 +30,9 @@ public class ValidatorService implements Consumer {
     @Override
     public void consume(FeedVO feed) {
         for (String url : feed.getFeedUrls()) {
+            if (url.isEmpty()) {
+                throw new InvalidFeedUrlException("One of the provided URLs is empty");
+            }
             if (!urlValidator.isValid(url)) {
                 throw new InvalidFeedUrlException("Following feed URL is invalid: " + url);
             }

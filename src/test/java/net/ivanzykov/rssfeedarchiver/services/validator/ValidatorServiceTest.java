@@ -1,6 +1,7 @@
 package net.ivanzykov.rssfeedarchiver.services.validator;
 
 import net.ivanzykov.rssfeedarchiver.services.FeedVOFactory;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -21,7 +22,6 @@ class ValidatorServiceTest {
 
     private static Stream<Arguments> provide_consume_invalidUrl_throwException() {
         return Stream.of(
-                Arguments.of(""),
                 Arguments.of("/wrongUrl"),
                 Arguments.of("ftp://site.com/abc.txt")
         );
@@ -36,5 +36,16 @@ class ValidatorServiceTest {
                 validatorService.consume(feed));
 
         assertEquals("Following feed URL is invalid: " + url, exception.getMessage());
+    }
+
+    @Test
+    void consume_emptyUrl_throwException() {
+        var feed = new FeedVOFactory().create(List.of(""));
+
+        Exception exception = assertThrows(InvalidFeedUrlException.class, () ->
+                validatorService.consume(feed));
+
+        assertEquals("One of the provided URLs is empty", exception.getMessage());
+
     }
 }
