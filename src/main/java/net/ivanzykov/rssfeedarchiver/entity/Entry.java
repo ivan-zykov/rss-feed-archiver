@@ -27,7 +27,7 @@ public class Entry {
     @Column(name = "link", nullable = false, length = 2083)
     private String link;
 
-    @Column(name = "pub_date")
+    @Column(name = "pub_date", columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private OffsetDateTime pubDate;
 
     public OffsetDateTime getPubDate() {
