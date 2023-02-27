@@ -1,6 +1,6 @@
 package net.ivanzykov.rssfeedarchiver.services.validator;
 
-import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
+import net.ivanzykov.rssfeedarchiver.services.FeedVOFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -30,7 +30,7 @@ class ValidatorServiceTest {
     @ParameterizedTest
     @MethodSource("provide_consume_invalidUrl_throwException")
     void consume_invalidUrl_throwException(String url) {
-        var feed = new FeedServiceImpl(List.of(url), null, null, null);
+        var feed = new FeedVOFactory().create(List.of(url));
 
         Exception exception = assertThrows(InvalidFeedUrlException.class, () ->
                 validatorService.consume(feed));

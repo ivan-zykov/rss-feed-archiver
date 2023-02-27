@@ -2,7 +2,7 @@ package net.ivanzykov.rssfeedarchiver.services.writer;
 
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
 import net.ivanzykov.rssfeedarchiver.repository.EntryRepository;
-import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
+import net.ivanzykov.rssfeedarchiver.services.FeedVOFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,6 @@ import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,7 +38,7 @@ class WriterServiceTest {
         entryOk.setPubDate(ZonedDateTime.now().toOffsetDateTime());
         var entryBad = new Entry();
 
-        var feed = new FeedServiceImpl(List.of("/testUrl"), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
+        var feed = new FeedVOFactory().create(List.of("/testUrl"));
         feed.addEntry(entryBad);
         feed.addEntry(entryOk);
 

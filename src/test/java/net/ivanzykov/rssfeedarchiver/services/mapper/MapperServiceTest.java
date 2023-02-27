@@ -4,14 +4,16 @@ import com.rometools.rome.feed.synd.SyndContentImpl;
 import com.rometools.rome.feed.synd.SyndEntryImpl;
 import com.rometools.rome.feed.synd.SyndFeedImpl;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
-import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
+import net.ivanzykov.rssfeedarchiver.services.FeedVOFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,7 +26,7 @@ class MapperServiceTest {
     @Test
     void consume() {
         String url1 = "/testUrl1";
-        var feed = new FeedServiceImpl(List.of(url1), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
+        var feedVO = new FeedVOFactory().create(List.of(url1));
 
         var sEntry = new SyndEntryImpl();
         String guid = "testUri";
@@ -43,9 +45,9 @@ class MapperServiceTest {
 
         var sFeed = new SyndFeedImpl();
         sFeed.setEntries(List.of(sEntry));
-        feed.addFetchedFeed(sFeed);
+        feedVO.addFetchedFeed(sFeed);
 
-        mapper.consume(feed);
+        mapper.consume(feedVO);
 
         var entry = new Entry();
         entry.setGuid(guid);
@@ -54,6 +56,6 @@ class MapperServiceTest {
         entry.setLink(link);
         entry.setPubDate(pubDate.toOffsetDateTime());
 
-        assertEquals(Set.of(entry), feed.getEntries());
+        assertEquals(Set.of(entry), feedVO.getEntries());
     }
 }

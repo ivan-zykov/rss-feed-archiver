@@ -3,10 +3,9 @@ package net.ivanzykov.rssfeedarchiver.services.mapper;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndEntryImpl;
 import com.rometools.rome.feed.synd.SyndFeed;
-import net.ivanzykov.rssfeedarchiver.controller.FeedService;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
 import net.ivanzykov.rssfeedarchiver.services.Consumer;
-import net.ivanzykov.rssfeedarchiver.services.FeedServiceImpl;
+import net.ivanzykov.rssfeedarchiver.services.FeedVO;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.core.annotation.Order;
@@ -33,12 +32,12 @@ public class MapperService implements Consumer {
     }
 
     /**
-     * Maps XML entries from the supplied {@link FeedServiceImpl} object to entities of and saves them in the same object.
+     * Maps XML entries from the supplied {@link FeedVO} object to entities of and saves them in the same object.
      *
-     * @param feed  feed object holding fetched items. Result is also saved there
+     * @param feed  feedVO object holding fetched items. Result is also saved there
      */
     @Override
-    public void consume(FeedService feed) {
+    public void consume(FeedVO feed) {
         for (SyndFeed syndFeed : feed.getFetchedFeeds()) {
             for (SyndEntry syndEntry : syndFeed.getEntries()) {
                 Entry entry = mapToEntity(syndEntry);

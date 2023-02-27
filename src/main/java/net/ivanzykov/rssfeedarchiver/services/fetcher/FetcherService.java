@@ -4,8 +4,8 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
-import net.ivanzykov.rssfeedarchiver.controller.FeedService;
 import net.ivanzykov.rssfeedarchiver.services.Consumer;
+import net.ivanzykov.rssfeedarchiver.services.FeedVO;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -33,12 +33,12 @@ public class FetcherService implements Consumer {
     }
 
     /**
-     * Fetches RSS feed from the URL set in the feed object and sets the result in the feed object.
+     * Fetches RSS feeds from the URLs set in the {@link FeedVO} object and sets the result in the same object.
      *
-     * @param feed feed object with the URL to fetch and where to save the result
+     * @param feed feedVO object with the URL to fetch and where to save the result
      */
     @Override
-    public void consume(FeedService feed) {
+    public void consume(FeedVO feed) {
         for (String url : feed.getFeedUrls()) {
             SyndFeed syndFeed = restTemplate.execute(url, HttpMethod.GET, null, response -> {
                 try (XmlReader xmlReader = xmlReaderFactory.createXmlReader(response.getBody())) {

@@ -4,6 +4,7 @@ import net.ivanzykov.rssfeedarchiver.controller.FeedService;
 import net.ivanzykov.rssfeedarchiver.entity.Entry;
 import net.ivanzykov.rssfeedarchiver.repository.EntryRepository;
 import net.ivanzykov.rssfeedarchiver.services.Consumer;
+import net.ivanzykov.rssfeedarchiver.services.FeedVO;
 import org.slf4j.Logger;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -31,10 +32,10 @@ public class WriterService implements Consumer {
      * Gets {@link Entry} objects from the supplied {@link FeedService} object and tries to persist each entry. If persisting
      * an entry fails, error is logged and persisting of the left entries continues.
      *
-     * @param feed feed object with data needed for this method
+     * @param feed feedVO object with data needed for this method
      */
     @Override
-    public void consume(FeedService feed) {
+    public void consume(FeedVO feed) {
         for (Entry entry : feed.getEntries()) {
             try {
                 entryRepository.save(entry);

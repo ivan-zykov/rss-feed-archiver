@@ -11,20 +11,20 @@ import java.util.List;
 @RestController
 public class FeedController {
 
-    private final FeedService feed;
+    private final ManagerOfServices managerOfServices;
 
     /**
      * Constructor of this class.
      *
-     * @param feed  feed object holding data needed to consume RSS feeds, and calls other services of this app.
+     * @param managerOfServices managerOfServices object triggering services
      */
-    public FeedController(FeedService feed) {
-        this.feed = feed;
+    public FeedController(ManagerOfServices managerOfServices) {
+        this.managerOfServices = managerOfServices;
     }
 
     @PostMapping("/analyse/new")
     @ResponseStatus(HttpStatus.CREATED)
     public void analyseNew(@RequestBody final List<String> feedUrls) {
-        feed.consumeUrls(feedUrls);
+        managerOfServices.consumeUrls(feedUrls);
     }
 }
