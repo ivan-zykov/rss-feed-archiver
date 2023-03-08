@@ -9,6 +9,6 @@ public class ValidatorServiceConfig {
 
     @Bean
     public UrlValidator urlValidator() {
-        return new UrlValidator(new String[]{"http","https"});
+        return new UrlValidator(new String[]{"http","https"}, UrlValidator.ALLOW_LOCAL_URLS);
     }
 }

@@ -11,8 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ValidatorServiceTest {
@@ -47,5 +46,12 @@ class ValidatorServiceTest {
 
         assertEquals("One of the provided URLs is empty", exception.getMessage());
 
+    }
+
+    @Test
+    void consume_localhost_valid() {
+        var feed = new FeedVOFactory().create(List.of("http://localhost:8080/file.xml"));
+
+        assertDoesNotThrow(() -> validatorService.consume(feed));
     }
 }
