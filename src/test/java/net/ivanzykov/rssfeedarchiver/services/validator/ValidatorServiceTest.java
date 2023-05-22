@@ -16,10 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ValidatorServiceTest {
 
-    @Autowired
-    ValidatorService validatorService;
-
-    private static Stream<Arguments> provide_consume_invalidUrl_throwException() {
+    private static Stream<Arguments> provide_invalid_urls() {
         return Stream.of(
                 Arguments.of("/wrongUrl"),
                 Arguments.of("ftp://site.com/abc.txt")
@@ -27,31 +24,33 @@ class ValidatorServiceTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provide_consume_invalidUrl_throwException")
-    void consume_invalidUrl_throwException(String url) {
-        var feed = new FeedVOFactory().create(List.of(url));
+    @MethodSource("provide_invalid_urls")
+    void throw_an_exception_for_an_invalid_url(String url, @Autowired ValidatorService sut) {
+        var feed = new FeedVOFactory()
+                .create(List.of(url));
 
         Exception exception = assertThrows(InvalidFeedUrlException.class, () ->
-                validatorService.consume(feed));
+                sut.consume(feed));
 
         assertEquals("Following feed URL is invalid: " + url, exception.getMessage());
     }
 
     @Test
-    void consume_emptyUrl_throwException() {
-        var feed = new FeedVOFactory().create(List.of(""));
+    void throw_an_exception_for_an_empty_url(@Autowired ValidatorService sut) {
+        var feed = new FeedVOFactory()
+                .create(List.of(""));
 
         Exception exception = assertThrows(InvalidFeedUrlException.class, () ->
-                validatorService.consume(feed));
+                sut.consume(feed));
 
         assertEquals("One of the provided URLs is empty", exception.getMessage());
-
     }
 
     @Test
-    void consume_localhost_valid() {
-        var feed = new FeedVOFactory().create(List.of("http://localhost:8080/file.xml"));
+    void consider_a_url_with_localhost_as_valid(@Autowired ValidatorService sut) {
+        var feed = new FeedVOFactory()
+                .create(List.of("http://localhost:8080/file.xml"));
 
-        assertDoesNotThrow(() -> validatorService.consume(feed));
+        assertDoesNotThrow(() -> sut.consume(feed));
     }
 }
