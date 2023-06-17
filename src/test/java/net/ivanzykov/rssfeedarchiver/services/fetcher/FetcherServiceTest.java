@@ -1,7 +1,6 @@
 package net.ivanzykov.rssfeedarchiver.services.fetcher;
 
 import net.ivanzykov.rssfeedarchiver.services.FeedVOFactory;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,39 +26,25 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 @SpringBootTest
 class FetcherServiceTest {
 
-    @Autowired
-    private FetcherService fetcherService;
-
-    @Autowired
-    private RestTemplate restTemplate;
-
-    private MockRestServiceServer mockServer;
-
-    @BeforeEach
-    void setUp() {
-        mockServer = MockRestServiceServer.createServer(restTemplate);
-    }
-
     @Test
-    void consume_fetchTwoFeeds_bothFeedsAreSet() throws URISyntaxException, IOException {
-        String url1 = "/testUrl1";
-        String url2 = "/testUrl2";
-        var feedVO = FeedVOFactory.create(List.of(url1, url2));
+    void both_fetched_feeds_are_set_in_feed(@Autowired final FetcherService sut,
+                                            @Autowired final RestTemplate restTemplate)
+            throws URISyntaxException, IOException {
 
-        assertTrue(feedVO.getFetchedFeeds().isEmpty());
-
+        final var url1 = "/testUrl1";
+        final var url2 = "/testUrl2";
+        final var feedVO = FeedVOFactory.create(List.of(url1, url2));
+        final MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
         mockServer.expect(ExpectedCount.once(), requestTo(url1))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(getXMLFixture("responseOk.xml"), MediaType.APPLICATION_XML));
-
         mockServer.expect(ExpectedCount.once(), requestTo(url2))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(getXMLFixture("responseOk.xml"), MediaType.APPLICATION_XML));
 
-        fetcherService.consume(feedVO);
+        sut.consume(feedVO);
 
         mockServer.verify();
-
         assertAll(
                 () -> assertEquals(2, feedVO.getFetchedFeeds().size()),
                 () -> assertEquals("Test title", feedVO.getFetchedFeeds().get(0).getTitle()),
@@ -68,24 +53,26 @@ class FetcherServiceTest {
     }
 
     @Test
-    void consume_XMLCouldNotBeParsed_exceptionIsHandled() throws URISyntaxException, IOException {
-        String url1 = "/testUrl1";
-        var feedVO = FeedVOFactory.create(List.of(url1));
+    void handle_exception_while_parsing_a_feed(@Autowired final FetcherService sut,
+                                               @Autowired final RestTemplate restTemplate)
+            throws URISyntaxException, IOException {
 
+        final var url1 = "/testUrl1";
+        final var feedVO = FeedVOFactory.create(List.of(url1));
+        final MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
         mockServer.expect(ExpectedCount.once(), requestTo(url1))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(getXMLFixture("responseBad.xml"), MediaType.APPLICATION_XML));
 
         Exception exception = assertThrows(FetcherException.class, () ->
-                fetcherService.consume(feedVO));
-
-        mockServer.verify();
+                sut.consume(feedVO));
 
         assertTrue(exception.getMessage().contains("Could not parse the feed with URL: /testUrl1"));
+        mockServer.verify();
     }
 
-    private String getXMLFixture(String filename) throws URISyntaxException, IOException {
-        Path path = Paths.get(Objects.requireNonNull(getClass().getClassLoader()
+    private String getXMLFixture(final String filename) throws URISyntaxException, IOException {
+        final Path path = Paths.get(Objects.requireNonNull(getClass().getClassLoader()
                 .getResource(filename)).toURI());
         return Files.readAllLines(path).get(0);
     }
