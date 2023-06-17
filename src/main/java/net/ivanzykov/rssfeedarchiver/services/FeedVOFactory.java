@@ -9,7 +9,9 @@ import java.util.List;
 @Component
 public class FeedVOFactory {
 
-    public FeedVO create(List<String> feedUrls) {
+    private FeedVOFactory() {}
+
+    public static FeedVO create(List<String> feedUrls) {
         return new FeedVOImpl(feedUrls, new ArrayList<>(), new HashSet<>());
     }
 }

@@ -34,19 +34,17 @@ class FetcherServiceTest {
     private RestTemplate restTemplate;
 
     private MockRestServiceServer mockServer;
-    private FeedVOFactory feedVOFactory;
 
     @BeforeEach
     void setUp() {
         mockServer = MockRestServiceServer.createServer(restTemplate);
-        feedVOFactory = new FeedVOFactory();
     }
 
     @Test
     void consume_fetchTwoFeeds_bothFeedsAreSet() throws URISyntaxException, IOException {
         String url1 = "/testUrl1";
         String url2 = "/testUrl2";
-        var feedVO = feedVOFactory.create(List.of(url1, url2));
+        var feedVO = FeedVOFactory.create(List.of(url1, url2));
 
         assertTrue(feedVO.getFetchedFeeds().isEmpty());
 
@@ -72,7 +70,7 @@ class FetcherServiceTest {
     @Test
     void consume_XMLCouldNotBeParsed_exceptionIsHandled() throws URISyntaxException, IOException {
         String url1 = "/testUrl1";
-        var feedVO = feedVOFactory.create(List.of(url1));
+        var feedVO = FeedVOFactory.create(List.of(url1));
 
         mockServer.expect(ExpectedCount.once(), requestTo(url1))
                 .andExpect(method(HttpMethod.GET))

@@ -38,7 +38,7 @@ class WriterServiceTest {
         entryOk.setPubDate(ZonedDateTime.now().toOffsetDateTime());
         var entryBad = new Entry();
 
-        var feed = new FeedVOFactory().create(List.of("/testUrl"));
+        var feed = FeedVOFactory.create(List.of("/testUrl"));
         feed.addEntry(entryBad);
         feed.addEntry(entryOk);
 

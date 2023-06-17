@@ -26,7 +26,7 @@ class MapperServiceTest {
     @Test
     void consume() {
         String url1 = "/testUrl1";
-        var feedVO = new FeedVOFactory().create(List.of(url1));
+        var feedVO = FeedVOFactory.create(List.of(url1));
 
         var sEntry = new SyndEntryImpl();
         String guid = "testUri";

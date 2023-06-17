@@ -26,8 +26,7 @@ class ValidatorServiceTest {
     @ParameterizedTest
     @MethodSource("provide_invalid_urls")
     void throw_an_exception_for_an_invalid_url(String url, @Autowired ValidatorService sut) {
-        var feed = new FeedVOFactory()
-                .create(List.of(url));
+        var feed = FeedVOFactory.create(List.of(url));
 
         Exception exception = assertThrows(InvalidFeedUrlException.class, () ->
                 sut.consume(feed));
@@ -37,8 +36,7 @@ class ValidatorServiceTest {
 
     @Test
     void throw_an_exception_for_an_empty_url(@Autowired ValidatorService sut) {
-        var feed = new FeedVOFactory()
-                .create(List.of(""));
+        var feed = FeedVOFactory.create(List.of(""));
 
         Exception exception = assertThrows(InvalidFeedUrlException.class, () ->
                 sut.consume(feed));
@@ -48,8 +46,7 @@ class ValidatorServiceTest {
 
     @Test
     void consider_a_url_with_localhost_as_valid(@Autowired ValidatorService sut) {
-        var feed = new FeedVOFactory()
-                .create(List.of("http://localhost:8080/file.xml"));
+        var feed = FeedVOFactory.create(List.of("http://localhost:8080/file.xml"));
 
         assertDoesNotThrow(() -> sut.consume(feed));
     }
